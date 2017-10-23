@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Weather App</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    </head>
+    <body>
+        <p th:text="'Weekly Min Temp: ' + ${forecast.minTemp}">Weekly Min Temp:</p>
+        <p th:text="'Weekly Max Temp: ' + ${forecast.maxTemp}">Weekly Max Temp:</p>
+
+
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Min Temp</th>
+                <th>Max Temp</th>
+            </tr>
+            <tr th:each="daily : ${forecast.dailyForecasts}">
+                <td th:text="${daily.date}">day</td>
+                <td th:text="${daily.minTemp}">2.41</td>
+                <td th:text="${daily.maxTemp}">15</td>
+            </tr>
+        </table>
+    </body>
+</html>
