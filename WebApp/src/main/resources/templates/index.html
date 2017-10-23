@@ -1,25 +1,30 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html th="http://www.thymeleaf.org">
     <head>
         <title>Weather App</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     </head>
     <body>
-        <p th:text="'Weekly Min Temp: ' + ${forecast.minTemp}">Weekly Min Temp:</p>
-        <p th:text="'Weekly Max Temp: ' + ${forecast.maxTemp}">Weekly Max Temp:</p>
+        <div style="background-color: antiquewhite; padding: 5px;">
+            <p><button onclick="geoFindMe()" class="btn btn-primary" >Get my location</button></p><!--onclick="geoFindMe()"-->
+            <p>
+                <input type="search" id="searchBox" th:attr ="url = @{/table}"/>
+                <button onclick="searchCity()" class="btn btn-primary">Search city</button>
+            </p>
+        </div>
+        <div id="container" style="background-color: salmon;">
 
+        </div>
 
-        <table>
-            <tr>
-                <th>Date</th>
-                <th>Min Temp</th>
-                <th>Max Temp</th>
-            </tr>
-            <tr th:each="daily : ${forecast.dailyForecasts}">
-                <td th:text="${daily.date}">day</td>
-                <td th:text="${daily.minTemp}">2.41</td>
-                <td th:text="${daily.maxTemp}">15</td>
-            </tr>
-        </table>
     </body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/common.js}"></script>
+
+
+
+
+
+
 </html>

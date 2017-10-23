@@ -33,8 +33,8 @@ public class WeatherController {
                                            @RequestParam(name = "lat") String latitude){
 
         Response response = weatherService.getForecastByCoordinates(longitude, latitude);
-//        return dataConverter.convertResponse(response); //TODO
-        return response;
+        return dataConverter.convertResponse(response);
+
     }
 
 

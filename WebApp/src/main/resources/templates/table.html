@@ -1,0 +1,17 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <p style="padding: 5px;" th:text="'Weekly Min Temp: ' + ${forecast.minTemp}">Weekly Min Temp:</p>
+    <p style="padding: 5px;" th:text="'Weekly Max Temp: ' + ${forecast.maxTemp}">Weekly Max Temp:</p>
+    <table class="table table-bordered" style="width: 50%;">
+        <tr>
+            <th>Date</th>
+            <th>Min Temp</th>
+            <th>Max Temp</th>
+        </tr>
+        <tr th:each="daily : ${forecast.dailyForecasts}">
+            <td th:text="${daily.date}">day</td>
+            <td th:text="${daily.minTemp}">2.41</td>
+            <td th:text="${daily.maxTemp}">15</td>
+        </tr>
+    </table>
+</div>
+
