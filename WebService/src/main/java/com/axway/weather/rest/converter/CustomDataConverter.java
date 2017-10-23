@@ -14,19 +14,11 @@ import java.util.*;
 @Component
 public class CustomDataConverter implements DataConverter{
 
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//2017-10-28 00:00:00
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     @Override
     public WeeklyForecast convertResponse(Response response) {
         WeeklyForecast weeklyForecast = new WeeklyForecast();
         List<com.axway.weather.model.Forecast> dailyForecasts = convertDailyForecasts(response);
-        //calculate weekly min and max
-//        weeklyForecast.setMaxTemp(25.0);
-//        weeklyForecast.setMinTemp(15.0);
-
-//        List<Forecast> list = new ArrayList<>();
-//        list.add(new Forecast(15, 25));
-//        list.add(new Forecast(13, 20));
-//        list.add(new Forecast(12, 20));
         weeklyForecast.setDailyForecasts(dailyForecasts);
         calculateWeeklyMinAndMaxTemp(weeklyForecast);
         return weeklyForecast;
@@ -52,7 +44,6 @@ public class CustomDataConverter implements DataConverter{
         List<Forecast> tempList = new ArrayList<>();
         GregorianCalendar initialDate =  new GregorianCalendar();
         GregorianCalendar current =  new GregorianCalendar();
-//        initialDate.setTime(new Date(response.getList().get(0).getDt()));
         try {
             initialDate.setTime(dateFormat.parse(response.getList().get(0).getDtTxt()));//TODO if != null size > 1
         } catch (ParseException e) {
@@ -61,14 +52,11 @@ public class CustomDataConverter implements DataConverter{
 
         for (int i = 1; i < response.getCnt(); i++) {
             Forecast forecast = response.getList().get(i);
-//            current.setTime(new Date(forecast.getDt()));
             try {
                 current.setTime(dateFormat.parse(response.getList().get(i).getDtTxt()));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-//            Date date = new Date();
-//            date.getDate();
 
             if(current.get(Calendar.DAY_OF_MONTH) != initialDate.get(Calendar.DAY_OF_MONTH)){
 
@@ -82,8 +70,6 @@ public class CustomDataConverter implements DataConverter{
             }
 
         }
-        //collect data inside list while date is the same
-        //calculate min and max and create new forecast
         return result;
     }
 
